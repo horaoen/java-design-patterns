@@ -24,19 +24,29 @@
  */
 package com.iluwatar.abstractfactory;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * Helper class to manufacture {@link KingdomFactory} beans. 
  */
+@Setter(AccessLevel.PRIVATE)
 @Getter
-@Setter
 public class Kingdom {
 
   private King king;
   private Castle castle;
   private Army army;
+  
+  public static Kingdom build(FactoryMaker.KingdomType kingdomType) {
+    KingdomFactory kingdomFactory = FactoryMaker.makeFactory(kingdomType);
+    Kingdom kingdom = new Kingdom();
+    kingdom.setArmy(kingdomFactory.createArmy()); 
+    kingdom.setKing(kingdomFactory.createKing());
+    kingdom.setCastle(kingdomFactory.createCastle());
+    return kingdom;
+  }
 
   /**
    * The factory of kingdom factories.
@@ -57,7 +67,6 @@ public class Kingdom {
       return switch (type) {
         case ELF -> new ElfKingdomFactory();
         case ORC -> new OrcKingdomFactory();
-        default -> throw new IllegalArgumentException("KingdomType not supported.");
       };
     }
   }
