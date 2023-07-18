@@ -29,45 +29,77 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Helper class to manufacture {@link KingdomFactory} beans. 
+ * Helper class to manufacture {@link KingdomFactory} beans.
  */
 @Setter(AccessLevel.PRIVATE)
 @Getter
 public class Kingdom {
 
-  private King king;
-  private Castle castle;
-  private Army army;
-  
-  public static Kingdom build(FactoryMaker.KingdomType kingdomType) {
-    KingdomFactory kingdomFactory = FactoryMaker.makeFactory(kingdomType);
-    Kingdom kingdom = new Kingdom();
-    kingdom.setArmy(kingdomFactory.createArmy()); 
-    kingdom.setKing(kingdomFactory.createKing());
-    kingdom.setCastle(kingdomFactory.createCastle());
-    return kingdom;
-  }
+    private King king;
+    private Castle castle;
+    private Army army;
+    
+    public Kingdom(Builder builder) {
+        this.army = builder.army;
+        this.castle = builder.castle;
+        this.king = builder.king;
+    }
 
-  /**
-   * The factory of kingdom factories.
-   */
-  public static class FactoryMaker {
+    @SuppressWarnings("unused")
+    public static class Builder {
+        private King king;
+        private Castle castle;
+        private Army army;
 
-    /**
-     * Enumeration for the different types of Kingdoms.
-     */
-    public enum KingdomType {
-      ELF, ORC
+        public Builder() {
+        }
+        public Builder(FactoryMaker.KingdomType kingdomType) {
+            KingdomFactory kingdomFactory = FactoryMaker.makeFactory(kingdomType);
+            this.king = kingdomFactory.createKing();
+            this.army = kingdomFactory.createArmy();
+            this.castle = kingdomFactory.createCastle();
+        }
+        
+        public Builder withKing(King king) {
+            this.king = king;
+            return this;
+        }
+        
+        public Builder withArmy(Army army) {
+            this.army = army;
+            return this;
+        }
+        
+        public Builder withCastle(Castle castle) {
+            this.castle = castle;
+            return this;
+        }
+        
+        public Kingdom build() {
+            return new Kingdom(this);
+        }
     }
 
     /**
-     * The factory method to create KingdomFactory concrete objects.
+     * The factory of kingdom factories.
      */
-    public static KingdomFactory makeFactory(KingdomType type) {
-      return switch (type) {
-        case ELF -> new ElfKingdomFactory();
-        case ORC -> new OrcKingdomFactory();
-      };
+    public static class FactoryMaker {
+
+        /**
+         * Enumeration for the different types of Kingdoms.
+         */
+        public enum KingdomType {
+            ELF, ORC
+        }
+
+        /**
+         * The factory method to create KingdomFactory concrete objects.
+         */
+        public static KingdomFactory makeFactory(KingdomType type) {
+            return switch (type) {
+                case ELF -> new ElfKingdomFactory();
+                case ORC -> new OrcKingdomFactory();
+            };
+        }
     }
-  }
 }

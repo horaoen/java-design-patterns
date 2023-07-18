@@ -56,16 +56,19 @@ public class App implements Runnable {
     @Override
     public void run() {
         LOGGER.info("elf kingdom");
-        Kingdom kingdom;
-        kingdom = Kingdom.build(Kingdom.FactoryMaker.KingdomType.ELF);
-        LOGGER.info(kingdom.getArmy().getDescription());
-        LOGGER.info(kingdom.getCastle().getDescription());
-        LOGGER.info(kingdom.getKing().getDescription());
+        Kingdom elfKingdom = new Kingdom.Builder(Kingdom.FactoryMaker.KingdomType.ELF).build();
+        LOGGER.info(elfKingdom.getArmy().getDescription());
+        LOGGER.info(elfKingdom.getCastle().getDescription());
+        LOGGER.info(elfKingdom.getKing().getDescription());
 
         LOGGER.info("orc kingdom");
-        kingdom = Kingdom.build(Kingdom.FactoryMaker.KingdomType.ORC);
-        LOGGER.info(kingdom.getArmy().getDescription());
-        LOGGER.info(kingdom.getCastle().getDescription());
-        LOGGER.info(kingdom.getKing().getDescription());
+        KingdomFactory orcKingdomFactory = Kingdom.FactoryMaker.makeFactory(Kingdom.FactoryMaker.KingdomType.ORC);
+        Kingdom orcKingdom = new Kingdom.Builder()
+                .withArmy(orcKingdomFactory.createArmy())
+                .withCastle(orcKingdomFactory.createCastle())
+                .build();
+        LOGGER.info(orcKingdom.getArmy().getDescription());
+        LOGGER.info(orcKingdom.getCastle().getDescription());
+        LOGGER.info("orgKingdom's King is null: {}",orcKingdom.getKing() == null);
     }
 }
