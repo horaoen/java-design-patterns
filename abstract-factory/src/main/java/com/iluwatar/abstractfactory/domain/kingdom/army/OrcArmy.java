@@ -22,14 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.abstractfactory;
+package com.iluwatar.abstractfactory.domain.kingdom.army;
 
 /**
- * ElfCastle.
+ * OrcArmy.
  */
-public class ElfCastle implements Castle {
+public class OrcArmy implements Army {
 
-  static final String DESCRIPTION = "This is the elven castle!";
+  static final String DESCRIPTION = "This is the orc army!";
 
   @Override
   public String getDescription() {

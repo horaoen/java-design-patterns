@@ -22,12 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.abstractfactory;
+package com.iluwatar.abstractfactory.domain.kingdom.castle;
 
 /**
- * King interface.
+ * Castle interface.
  */
-public interface King {
+public interface Castle {
 
   String getDescription();
 }

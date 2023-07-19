@@ -22,25 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.abstractfactory;
+package com.iluwatar.abstractfactory.domain.kingdom.factory;
+
+import com.iluwatar.abstractfactory.domain.kingdom.army.Army;
+import com.iluwatar.abstractfactory.domain.kingdom.army.ElfArmy;
+import com.iluwatar.abstractfactory.domain.kingdom.castle.Castle;
+import com.iluwatar.abstractfactory.domain.kingdom.castle.ElfCastle;
+import com.iluwatar.abstractfactory.domain.kingdom.king.ElfKing;
+import com.iluwatar.abstractfactory.domain.kingdom.king.King;
 
 /**
- * OrcKingdomFactory concrete factory.
+ * ElfKingdomFactory concrete factory.
  */
-public class OrcKingdomFactory implements KingdomFactory {
+public class ElfKingdomFactory implements KingdomFactory {
 
   @Override
   public Castle createCastle() {
-    return new OrcCastle();
+    return new ElfCastle();
   }
 
   @Override
   public King createKing() {
-    return new OrcKing();
+    return new ElfKing();
   }
 
   @Override
   public Army createArmy() {
-    return new OrcArmy();
+    return new ElfArmy();
   }
+
 }

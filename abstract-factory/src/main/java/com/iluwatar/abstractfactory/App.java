@@ -24,6 +24,11 @@
  */
 package com.iluwatar.abstractfactory;
 
+import com.iluwatar.abstractfactory.domain.kingdom.Kingdom;
+import com.iluwatar.abstractfactory.domain.kingdom.KingdomBuilder;
+import com.iluwatar.abstractfactory.domain.kingdom.factory.ElfKingdomFactory;
+import com.iluwatar.abstractfactory.domain.kingdom.factory.KingdomFactory;
+import com.iluwatar.abstractfactory.domain.kingdom.factory.OrcKingdomFactory;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -56,14 +61,15 @@ public class App implements Runnable {
     @Override
     public void run() {
         LOGGER.info("elf kingdom");
-        Kingdom elfKingdom = new Kingdom.Builder(Kingdom.FactoryMaker.KingdomType.ELF).build();
+        Kingdom elfKingdom = new KingdomBuilder().withKingdomType(Kingdom.FactoryMaker.KingdomType.ELF).build();
+        
         LOGGER.info(elfKingdom.getArmy().getDescription());
         LOGGER.info(elfKingdom.getCastle().getDescription());
         LOGGER.info(elfKingdom.getKing().getDescription());
 
         LOGGER.info("orc kingdom");
         KingdomFactory orcKingdomFactory = Kingdom.FactoryMaker.makeFactory(Kingdom.FactoryMaker.KingdomType.ORC);
-        Kingdom orcKingdom = new Kingdom.Builder()
+        Kingdom orcKingdom = new KingdomBuilder()
                 .withArmy(orcKingdomFactory.createArmy())
                 .withCastle(orcKingdomFactory.createCastle())
                 .build();

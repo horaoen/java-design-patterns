@@ -22,17 +22,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.abstractfactory;
+package com.iluwatar.abstractfactory.domain.kingdom.factory;
+
+import com.iluwatar.abstractfactory.domain.kingdom.army.Army;
+import com.iluwatar.abstractfactory.domain.kingdom.castle.Castle;
+import com.iluwatar.abstractfactory.domain.kingdom.castle.OrcCastle;
+import com.iluwatar.abstractfactory.domain.kingdom.king.King;
+import com.iluwatar.abstractfactory.domain.kingdom.army.OrcArmy;
+import com.iluwatar.abstractfactory.domain.kingdom.king.OrcKing;
 
 /**
- * OrcCastle.
+ * OrcKingdomFactory concrete factory.
  */
-public class OrcCastle implements Castle {
-
-  static final String DESCRIPTION = "This is the orc castle!";
+public class OrcKingdomFactory implements KingdomFactory {
 
   @Override
-  public String getDescription() {
-    return DESCRIPTION;
+  public Castle createCastle() {
+    return new OrcCastle();
+  }
+
+  @Override
+  public King createKing() {
+    return new OrcKing();
+  }
+
+  @Override
+  public Army createArmy() {
+    return new OrcArmy();
   }
 }

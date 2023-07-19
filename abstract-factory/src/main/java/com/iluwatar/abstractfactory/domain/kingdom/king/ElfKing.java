@@ -22,12 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.abstractfactory;
+package com.iluwatar.abstractfactory.domain.kingdom.king;
 
 /**
- * Army interface.
+ * ElfKing.
  */
-public interface Army {
+public class ElfKing implements King {
 
-  String getDescription();
+  static final String DESCRIPTION = "This is the elven king!";
+
+  @Override
+  public String getDescription() {
+    return DESCRIPTION;
+  }
 }

@@ -22,63 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.abstractfactory;
+package com.iluwatar.abstractfactory.domain.kingdom;
 
+import com.iluwatar.abstractfactory.domain.kingdom.army.Army;
+import com.iluwatar.abstractfactory.domain.kingdom.castle.Castle;
+import com.iluwatar.abstractfactory.domain.kingdom.factory.ElfKingdomFactory;
+import com.iluwatar.abstractfactory.domain.kingdom.factory.KingdomFactory;
+import com.iluwatar.abstractfactory.domain.kingdom.factory.OrcKingdomFactory;
+import com.iluwatar.abstractfactory.domain.kingdom.king.King;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
  * Helper class to manufacture {@link KingdomFactory} beans.
  */
-@Setter(AccessLevel.PRIVATE)
+@Setter(AccessLevel.PROTECTED)
 @Getter
+@NoArgsConstructor
 public class Kingdom {
-
     private King king;
     private Castle castle;
     private Army army;
-    
-    public Kingdom(Builder builder) {
-        this.army = builder.army;
-        this.castle = builder.castle;
-        this.king = builder.king;
-    }
-
-    @SuppressWarnings("unused")
-    public static class Builder {
-        private King king;
-        private Castle castle;
-        private Army army;
-
-        public Builder() {
-        }
-        public Builder(FactoryMaker.KingdomType kingdomType) {
-            KingdomFactory kingdomFactory = FactoryMaker.makeFactory(kingdomType);
-            this.king = kingdomFactory.createKing();
-            this.army = kingdomFactory.createArmy();
-            this.castle = kingdomFactory.createCastle();
-        }
-        
-        public Builder withKing(King king) {
-            this.king = king;
-            return this;
-        }
-        
-        public Builder withArmy(Army army) {
-            this.army = army;
-            return this;
-        }
-        
-        public Builder withCastle(Castle castle) {
-            this.castle = castle;
-            return this;
-        }
-        
-        public Kingdom build() {
-            return new Kingdom(this);
-        }
-    }
 
     /**
      * The factory of kingdom factories.
