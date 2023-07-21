@@ -22,32 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.visitor;
+package com.iluwatar.visitor.example1;
 
 /**
- * <p>Visitor pattern defines a mechanism to apply operations on nodes in a hierarchy. New
- * operations can be added without altering the node interface.</p>
- *
- * <p>In this example there is a unit hierarchy beginning from {@link Commander}. This hierarchy is
- * traversed by visitors. {@link SoldierVisitor} applies its operation on {@link Soldier}s, {@link
- * SergeantVisitor} on {@link Sergeant}s and so on.</p>
+ * Sergeant.
  */
-public class App {
+public class Sergeant extends Unit {
+
+  public Sergeant(Unit... children) {
+    super(children);
+  }
 
   /**
-   * Program entry point.
-   *
-   * @param args command line args
+   * Accept a Visitor.
+   * @param visitor UnitVisitor to be accepted
    */
-  public static void main(String[] args) {
+  @Override
+  public void accept(UnitVisitor visitor) {
+    visitor.visit(this);
+    super.accept(visitor);
+  }
 
-    var commander = new Commander(
-        new Sergeant(new Soldier(), new Soldier(), new Soldier()),
-        new Sergeant(new Soldier(), new Soldier(), new Soldier())
-    );
-    commander.accept(new SoldierVisitor());
-    commander.accept(new SergeantVisitor());
-    commander.accept(new CommanderVisitor());
-
+  @Override
+  public String toString() {
+    return "sergeant";
   }
 }

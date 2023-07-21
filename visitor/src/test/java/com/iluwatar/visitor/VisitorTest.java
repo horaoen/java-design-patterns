@@ -32,6 +32,11 @@ import ch.qos.logback.core.AppenderBase;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+
+import com.iluwatar.visitor.example1.Commander;
+import com.iluwatar.visitor.example1.Sergeant;
+import com.iluwatar.visitor.example1.Soldier;
+import com.iluwatar.visitor.example1.UnitVisitor;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

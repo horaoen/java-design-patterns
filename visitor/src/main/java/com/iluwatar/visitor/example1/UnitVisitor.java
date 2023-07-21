@@ -22,31 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.visitor;
-
-import com.iluwatar.visitor.example1.Sergeant;
-import com.iluwatar.visitor.example1.UnitVisitor;
-
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.verify;
+package com.iluwatar.visitor.example1;
 
 /**
- * Date: 12/30/15 - 19:45 PM.
- *
- * @author Jeroen Meulemeester
+ * Visitor interface.
  */
-class SergeantTest extends UnitTest<Sergeant> {
+public interface UnitVisitor {
 
-  /**
-   * Create a new test instance for the given {@link Sergeant}.
-   */
-  public SergeantTest() {
-    super(Sergeant::new);
-  }
+  void visit(Soldier soldier);
 
-  @Override
-  void verifyVisit(Sergeant unit, UnitVisitor mockedVisitor) {
-    verify(mockedVisitor).visit(eq(unit));
-  }
+  void visit(Sergeant sergeant);
+
+  void visit(Commander commander);
 
 }

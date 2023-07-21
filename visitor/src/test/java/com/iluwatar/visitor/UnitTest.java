@@ -31,6 +31,9 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import java.util.Arrays;
 import java.util.function.Function;
+
+import com.iluwatar.visitor.example1.Unit;
+import com.iluwatar.visitor.example1.UnitVisitor;
 import org.junit.jupiter.api.Test;
 
 /**

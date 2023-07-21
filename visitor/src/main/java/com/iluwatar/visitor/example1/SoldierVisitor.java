@@ -22,31 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.visitor;
+package com.iluwatar.visitor.example1;
 
-import com.iluwatar.visitor.example1.Sergeant;
-import com.iluwatar.visitor.example1.UnitVisitor;
-
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.verify;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Date: 12/30/15 - 19:45 PM.
- *
- * @author Jeroen Meulemeester
+ * SoldierVisitor.
  */
-class SergeantTest extends UnitTest<Sergeant> {
+@Slf4j
+public class SoldierVisitor implements UnitVisitor {
 
   /**
-   * Create a new test instance for the given {@link Sergeant}.
+   * Soldier Visitor method.
+   * @param soldier Soldier to be visited
    */
-  public SergeantTest() {
-    super(Sergeant::new);
-  }
-
   @Override
-  void verifyVisit(Sergeant unit, UnitVisitor mockedVisitor) {
-    verify(mockedVisitor).visit(eq(unit));
+  public void visit(Soldier soldier) {
+    LOGGER.info("Greetings {}", soldier);
+//    LOGGER.debug("soldier be visited by soldier");
   }
 
+  /**
+   * Sergeant Visitor method.
+   * @param sergeant Sergeant to be visited
+   */
+  @Override
+  public void visit(Sergeant sergeant) {
+    // Do nothing
+//    LOGGER.debug("sergeant be visited by solider");
+  }
+
+  /**
+   * Commander Visitor method.
+   * @param commander Commander to be visited
+   */
+  @Override
+  public void visit(Commander commander) {
+//    LOGGER.debug("commander be visited by solider");
+  }
 }

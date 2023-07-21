@@ -24,6 +24,7 @@
  */
 package com.iluwatar.visitor;
 
+import com.iluwatar.visitor.example1.App;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

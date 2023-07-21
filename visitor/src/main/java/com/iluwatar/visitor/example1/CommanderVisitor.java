@@ -22,25 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.visitor;
+package com.iluwatar.visitor.example1;
 
-import java.util.Arrays;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Interface for the nodes in hierarchy.
+ * CommanderVisitor.
  */
-public abstract class Unit {
+@Slf4j
+public class CommanderVisitor implements UnitVisitor {
 
-  private final Unit[] children;
-
-  public Unit(Unit... children) {
-    this.children = children;
+  /**
+   * Soldier Visitor method.
+   * @param soldier Soldier to be visited
+   */
+  @Override
+  public void visit(Soldier soldier) {
+    // Do nothing
   }
 
   /**
-   * Accept visitor.
+   * Sergeant Visitor method.
+   * @param sergeant Sergeant to be visited
    */
-  public void accept(UnitVisitor visitor) {
-    Arrays.stream(children).forEach(child -> child.accept(visitor));
+  @Override
+  public void visit(Sergeant sergeant) {
+    // Do nothing
+  }
+
+  /**
+   * Commander Visitor method.
+   * @param commander Commander to be visited
+   */
+  @Override
+  public void visit(Commander commander) {
+    LOGGER.info("Good to see you {}", commander);
   }
 }
